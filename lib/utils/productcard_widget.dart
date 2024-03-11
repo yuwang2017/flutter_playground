@@ -1,7 +1,6 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
-
-import '../apimodel/api2model.dart';
+import '../apimodel/product.dart';
 
 class ProductCard extends StatelessWidget {
   final Product product;
@@ -22,6 +21,8 @@ class ProductCard extends StatelessWidget {
                 // this is to fetch the image
                 imageUrl: product.image,
                 fit: BoxFit.cover,
+                width: 300.0,
+                height: 300.0,
               ),
             ),
             ListTile(
