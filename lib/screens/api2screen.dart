@@ -1,7 +1,6 @@
 import 'dart:convert';
-
 import 'package:audioplayers/audioplayers.dart';
-import '../utils/question_widget.dart';
+import '../utils/wrapquestion_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import '../apimodel/product.dart';
@@ -27,22 +26,47 @@ class _ProductListScreenState extends State<ProductListScreen> {
   @override
   void initState() {
     super.initState();
-    //fetchProducts();
     fetchSurvey();
   }
 
-  Future<void> fetchProducts() async {
-    // you can replace your api link with this link
-    final response =
-        await http.get(Uri.parse('https://fakestoreapi.com/products'));
-    if (response.statusCode == 200) {
-      List<dynamic> jsonData = json.decode(response.body);
-      setState(() {
-        products = jsonData.map((data) => Product.fromJson(data)).toList();
-      });
-    } else {
-      // Handle error if needed
+  void updateSurveyAnswers(String audioFileName, String answer) {
+    //Update the answer
+    for (SurveyQuestion question in this.survey.questions) {
+      if (question.audioFileName == audioFileName) {
+        question.answer = answer;
+      }
     }
+    setState(() {});
+  }
+
+  void saveSurvey() {
+    saveSurveyAPI();
+  }
+
+  void submitSurvey() {
+    submitSurveyAPI();
+  }
+
+  Future<http.Response> saveSurveyAPI() async {
+    var url = 'https://surveycataudioprocessor.ue.r.appspot.com/saveSurvey';
+    print(survey);
+    //encode Map to JSON
+    var body = json.encode(jsonEncode(survey));
+
+    var response = await http.post(Uri.parse(url),
+        headers: {"Content-Type": "application/json"}, body: body);
+    print("${response.statusCode}");
+    return response;
+  }
+
+  Future<http.Response> submitSurveyAPI() async {
+    var url = 'https://surveycataudioprocessor.ue.r.appspot.com/submitSurvey';
+    //encode Map to JSON
+    var body = json.encode(jsonEncode(survey));
+    var response = await http.post(Uri.parse(url),
+        headers: {"Content-Type": "application/json"}, body: body);
+    print("${response.statusCode}");
+    return response;
   }
 
   Future<void> fetchSurvey() async {
@@ -75,7 +99,28 @@ class _ProductListScreenState extends State<ProductListScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Questions'),
+        backgroundColor: Colors.white,
+        title: Text(
+            style: TextStyle(fontStyle: FontStyle.italic, color: Colors.black),
+            'Questions'),
+        actions: <Widget>[
+          Padding(
+              padding: EdgeInsets.only(right: 20.0),
+              child: GestureDetector(
+                onTap: () {
+                  saveSurvey();
+                },
+                child: Text('Save Survey'),
+              )),
+          Padding(
+              padding: EdgeInsets.only(right: 20.0),
+              child: GestureDetector(
+                onTap: () {
+                  submitSurvey();
+                },
+                child: Text('Submit Survey'),
+              )),
+        ],
       ),
       body: ListView.builder(
         // this give th length of item
@@ -83,9 +128,10 @@ class _ProductListScreenState extends State<ProductListScreen> {
         itemBuilder: (context, index) {
           // here we card the card widget
           // which is in utils folder
-          return QuestionWidget(
+          return WrapQuestionWidget(
               question: survey.questions[index],
-              audioPlayer: audioPlayers[index]);
+              audioPlayer: audioPlayers[index],
+              methodFromParent: updateSurveyAnswers);
         },
       ),
     );

@@ -1,7 +1,7 @@
 class SurveyQuestion {
   final int index;
   final String audioFileName;
-  final String answer;
+  String answer;
 
   SurveyQuestion({
     required this.index,

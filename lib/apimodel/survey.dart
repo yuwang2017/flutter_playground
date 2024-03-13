@@ -7,7 +7,7 @@ class Survey {
   final DateTime submitDate;
   final DateTime lastAccessDate;
   final String status;
-  final List<SurveyQuestion> questions;
+  List<SurveyQuestion> questions;
 
   Survey({
     required this.userId,

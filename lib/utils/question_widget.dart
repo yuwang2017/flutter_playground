@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:namer_app/utils/grid_widget.dart';
 import '../apimodel/question.dart';
 import 'player_widget.dart';
-import 'radio_widget.dart';
 
 class QuestionWidget extends StatelessWidget {
   final SurveyQuestion question;
@@ -13,7 +12,7 @@ class QuestionWidget extends StatelessWidget {
     required this.question,
     required this.audioPlayer,
   });
-
+  void updateSurveyAnswers(String audioFileName, String answer) {}
   @override
   Widget build(BuildContext context) {
     return Card(
@@ -41,8 +40,8 @@ class QuestionWidget extends StatelessWidget {
                 decoration: BoxDecoration(
                   border: Border.all(),
                 ),
-                // child: AnswerWidget(question: question)),
-                child: GridWidget(answer: question.answer))
+                child: GridWidget(
+                    question: question, methodFromParent: updateSurveyAnswers))
           ],
         ),
       ),
