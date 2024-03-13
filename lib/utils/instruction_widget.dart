@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'player_widget.dart';
 
 class InstructionWidget extends StatelessWidget {
-  InstructionWidget();
+  const InstructionWidget();
 
   @override
   Widget build(BuildContext context) {
@@ -18,7 +18,7 @@ class InstructionWidget extends StatelessWidget {
       color: Colors.grey,
       child: Padding(
         padding: const EdgeInsets.all(8.0),
-        child: Wrap(children: <Widget>[
+        child: Column(children: <Widget>[
           Container(
             width: 300,
             height: 150,

@@ -29,3 +29,5 @@ flutter:
   assets:
     - assets/images/duke_logo.jpg
     - assets/images/duke_logo2.jpg
+    - assets/images/faqua_logo.png
+    - assets/images/duke_background.png

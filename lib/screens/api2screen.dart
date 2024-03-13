@@ -99,9 +99,12 @@ class _ProductListScreenState extends State<ProductListScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Colors.white,
+        backgroundColor: Colors.blueAccent,
         title: Text(
-            style: TextStyle(fontStyle: FontStyle.italic, color: Colors.black),
+            style: TextStyle(
+                fontStyle: FontStyle.italic,
+                fontWeight: FontWeight.bold,
+                color: Colors.black),
             'Questions'),
         actions: <Widget>[
           Padding(
@@ -110,7 +113,14 @@ class _ProductListScreenState extends State<ProductListScreen> {
                 onTap: () {
                   saveSurvey();
                 },
-                child: Text('Save Survey'),
+                child: Text(
+                  'Save Survey',
+                  style: TextStyle(
+                      fontStyle: FontStyle.italic,
+                      fontWeight: FontWeight.bold,
+                      color: Colors.black,
+                      fontSize: 14.0),
+                ),
               )),
           Padding(
               padding: EdgeInsets.only(right: 20.0),
@@ -118,7 +128,14 @@ class _ProductListScreenState extends State<ProductListScreen> {
                 onTap: () {
                   submitSurvey();
                 },
-                child: Text('Submit Survey'),
+                child: Text(
+                  'Submit Survey',
+                  style: TextStyle(
+                      fontStyle: FontStyle.italic,
+                      fontWeight: FontWeight.bold,
+                      color: Colors.black,
+                      fontSize: 14.0),
+                ),
               )),
         ],
       ),

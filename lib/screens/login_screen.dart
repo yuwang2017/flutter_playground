@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import '../utils/survey_widget.dart';
-import '../utils/header_widget.dart';
+import '../utils/header_widget2.dart';
+import '../utils/tabbed_survey_widget.dart';
 
 class LoginWidget extends StatelessWidget {
   @override
@@ -8,7 +9,7 @@ class LoginWidget extends StatelessWidget {
     return Column(children: [
       AppBar(
         title: Text(''),
-        flexibleSpace: HeaderWidget(),
+        flexibleSpace: HeaderWidget2(),
       ),
       Card(
         child: Padding(
@@ -55,7 +56,7 @@ class LoginWidget extends StatelessWidget {
                 onPressed: () {
                   Navigator.push(
                     context,
-                    MaterialPageRoute(builder: (context) => SurveyWidget()),
+                    MaterialPageRoute(builder: (context) => TabSurveyWidget()),
                   );
                 },
                 child: Text('Start Survey'),

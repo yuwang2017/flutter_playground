@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import '/screens/api2screen.dart';
-import '../utils/header_widget.dart';
+import '../utils/header_widget2.dart';
 import '../utils/instruction_widget.dart';
 
 class SurveyWidget extends StatelessWidget {
@@ -11,7 +11,7 @@ class SurveyWidget extends StatelessWidget {
     return Column(children: [
       AppBar(
         title: Text(''),
-        flexibleSpace: HeaderWidget(),
+        flexibleSpace: HeaderWidget2(),
       ),
       Card(
         child: Padding(
