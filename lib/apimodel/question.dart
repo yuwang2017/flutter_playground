@@ -16,4 +16,10 @@ class SurveyQuestion {
       answer: json['answer'],
     );
   }
+
+  Map<String, dynamic> toJson() => {
+        'index': index,
+        'audioFileName': audioFileName,
+        'answer': answer,
+      };
 }

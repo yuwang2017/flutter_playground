@@ -86,21 +86,21 @@ class _PlayerWidgetState extends State<PlayerWidget> {
             IconButton(
               key: const Key('play_button'),
               onPressed: _isPlaying ? null : _play,
-              iconSize: 48.0,
+              iconSize: 32.0,
               icon: const Icon(Icons.play_arrow),
               color: color,
             ),
             IconButton(
               key: const Key('pause_button'),
               onPressed: _isPlaying ? _pause : null,
-              iconSize: 48.0,
+              iconSize: 32.0,
               icon: const Icon(Icons.pause),
               color: color,
             ),
             IconButton(
               key: const Key('stop_button'),
               onPressed: _isPlaying || _isPaused ? _stop : null,
-              iconSize: 48.0,
+              iconSize: 32.0,
               icon: const Icon(Icons.stop),
               color: color,
             ),
@@ -128,7 +128,7 @@ class _PlayerWidgetState extends State<PlayerWidget> {
               : _duration != null
                   ? _durationText
                   : '',
-          style: const TextStyle(fontSize: 16.0),
+          style: const TextStyle(fontSize: 14.0),
         ),
       ],
     );

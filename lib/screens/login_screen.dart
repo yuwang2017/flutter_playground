@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import '../utils/survey_widget.dart';
 import '../utils/header_widget2.dart';
 import '../utils/tabbed_survey_widget.dart';
+import '../utils/stateful_survey_widget.dart';
 
 class LoginWidget extends StatelessWidget {
   @override
@@ -56,7 +56,9 @@ class LoginWidget extends StatelessWidget {
                 onPressed: () {
                   Navigator.push(
                     context,
-                    MaterialPageRoute(builder: (context) => TabSurveyWidget()),
+                    MaterialPageRoute(
+                        builder: (context) =>
+                            StatefulSurveyWidget(userId: "user123")),
                   );
                 },
                 child: Text('Start Survey'),

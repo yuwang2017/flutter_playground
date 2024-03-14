@@ -28,7 +28,10 @@ class WrapQuestionWidget extends StatelessWidget {
           Container(
               width: 50,
               child: Text(
-                  style: TextStyle(fontStyle: FontStyle.italic, fontSize: 14.0),
+                  style: TextStyle(
+                      fontStyle: FontStyle.italic,
+                      fontWeight: FontWeight.bold,
+                      fontSize: 16.0),
                   overflow: TextOverflow.ellipsis,
                   (question.index).toString())),
           Container(
@@ -42,9 +45,8 @@ class WrapQuestionWidget extends StatelessWidget {
               height: 150,
               decoration: BoxDecoration(
                 border: Border.all(),
-                color: Colors.blueGrey,
+                color: Colors.blueAccent,
               ),
-              // child: AnswerWidget(question: question)),
               child: GridWidget(
                   question: question, methodFromParent: updateSurveyAnswers))
         ]),

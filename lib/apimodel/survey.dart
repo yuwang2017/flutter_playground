@@ -39,4 +39,17 @@ class Survey {
           : <SurveyQuestion>[],
     );
   }
+
+  Map toJson() {
+    List<Map> tags = questions.map((i) => i.toJson()).toList();
+    return {
+      'userId': userId,
+      'surveyLot': surveyLot,
+      'startDate': startDate.toString(),
+      'submitDate': submitDate.toString(),
+      'lastAccessDate': lastAccessDate.toString(),
+      'status': status,
+      'questions': tags,
+    };
+  }
 }
