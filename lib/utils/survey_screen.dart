@@ -8,9 +8,10 @@ import 'dart:convert';
 
 class SurveyScreen extends StatelessWidget {
   Survey survey;
-  List<AudioPlayer> audioPlayers = [];
-
-  SurveyScreen({required this.survey, required this.audioPlayers});
+  SurveyScreen({
+    required this.survey,
+    // required this.audioPlayers
+  });
 
   void updateSurveyAnswers(String audioFileName, String answer) {
     //Update the answer
@@ -103,7 +104,6 @@ class SurveyScreen extends StatelessWidget {
           // which is in utils folder
           return WrapQuestionWidget(
               question: survey.questions[index],
-              audioPlayer: audioPlayers[index],
               methodFromParent: updateSurveyAnswers);
         },
       ),

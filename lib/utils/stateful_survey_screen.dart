@@ -7,6 +7,7 @@ import '../apimodel/survey.dart';
 import 'header_widget.dart';
 import '../utils/survey_screen.dart';
 import '../utils/instruction_widget.dart';
+import "paging_widget.dart";
 
 class StatefulSurveyWidget extends StatefulWidget {
   final String userId;
@@ -20,7 +21,6 @@ class StatefulSurveyWidget extends StatefulWidget {
 }
 
 class _StatefulSurveyState extends State<StatefulSurveyWidget> {
-  List<AudioPlayer> audioPlayers = [];
   Survey survey = new Survey(
       userId: "",
       surveyLot: "",
@@ -63,8 +63,6 @@ class _StatefulSurveyState extends State<StatefulSurveyWidget> {
                   question.audioFileName;
           player.setSourceUrl(url);
           player.stop();
-          //player.play(UrlSource(url));
-          audioPlayers.add(player);
         }
       });
     } else {
@@ -121,13 +119,14 @@ class _StatefulSurveyState extends State<StatefulSurveyWidget> {
             children: [
               InstructionWidget(),
               Container(
-                  width: 800,
-                  height: 800,
-                  decoration: BoxDecoration(border: Border.all()),
-                  child: SurveyScreen(
-                    survey: survey,
-                    audioPlayers: audioPlayers,
-                  )),
+                width: 800,
+                height: 800,
+                decoration: BoxDecoration(border: Border.all()),
+                child: SurveyScreen(
+                  survey: survey,
+                ),
+                //child: NumbersPage(),
+              ),
             ],
           ), // TabBarView
         ), // Scaffold

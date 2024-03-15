@@ -6,11 +6,11 @@ import 'player_widget.dart';
 
 class WrapQuestionWidget extends StatelessWidget {
   final SurveyQuestion question;
-  final AudioPlayer audioPlayer;
+  //final AudioPlayer audioPlayer;
   final Function(String val1, String val2)? methodFromParent;
   WrapQuestionWidget({
     required this.question,
-    required this.audioPlayer,
+    //  required this.audioPlayer,
     required this.methodFromParent,
   });
 
@@ -20,6 +20,12 @@ class WrapQuestionWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    AudioPlayer audioPlayer = new AudioPlayer();
+    audioPlayer..setReleaseMode(ReleaseMode.stop);
+    String url = "https://surveycataudioprocessor.ue.r.appspot.com/getAudio/" +
+        question.audioFileName;
+    audioPlayer.setSourceUrl(url);
+    audioPlayer.stop();
     return Card(
       color: Colors.blueGrey,
       child: Padding(
