@@ -7,18 +7,16 @@ class HeaderWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return Row(children: [
       Container(
-        width: 200,
-        height: 150,
-        child: Image.asset('assets/images/duke_logo.jpg'),
-      ),
-      Container(
-        width: 50,
-        height: 150,
-        child: Text(''),
-      ),
-      Text(
-        "Fuqua School of Business",
-        style: TextStyle(fontStyle: FontStyle.italic, fontSize: 30.0),
+        width: MediaQuery.of(context).size.width,
+        height: 100,
+        alignment: Alignment.topLeft,
+        decoration: BoxDecoration(
+          image: DecorationImage(
+            image: AssetImage("assets/images/duke_background.png"),
+            fit: BoxFit.cover,
+          ),
+        ),
+        child: Image.asset('assets/images/faqua_logo.png'),
       ),
     ]);
   }

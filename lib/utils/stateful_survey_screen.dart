@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import '../apimodel/question.dart';
 import '../apimodel/survey.dart';
-import '../utils/header_widget2.dart';
+import 'header_widget.dart';
 import '../utils/survey_screen.dart';
 import '../utils/instruction_widget.dart';
 
@@ -80,7 +80,7 @@ class _StatefulSurveyState extends State<StatefulSurveyWidget> {
         length: 2,
         child: Scaffold(
           appBar: AppBar(
-            flexibleSpace: HeaderWidget2(),
+            flexibleSpace: HeaderWidget(),
             bottom: TabBar(
               unselectedLabelColor: Colors.white,
               indicatorColor: Colors.lime,

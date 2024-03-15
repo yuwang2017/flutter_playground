@@ -1,15 +1,15 @@
 import 'package:flutter/material.dart';
-import '../utils/header_widget2.dart';
-import '../utils/tabbed_survey_widget.dart';
-import '../utils/stateful_survey_widget.dart';
+import '../utils/header_widget.dart';
+import '../utils/stateful_survey_screen.dart';
 
 class LoginWidget extends StatelessWidget {
+  String userId = "";
   @override
   Widget build(BuildContext context) {
     return Column(children: [
       AppBar(
         title: Text(''),
-        flexibleSpace: HeaderWidget2(),
+        flexibleSpace: HeaderWidget(),
       ),
       Card(
         child: Padding(
@@ -36,17 +36,18 @@ class LoginWidget extends StatelessWidget {
                   child: Padding(
                     padding: EdgeInsets.symmetric(horizontal: 8, vertical: 16),
                     child: TextField(
+                        onChanged: (value) => userId = value,
                         decoration: InputDecoration(
-                      border: OutlineInputBorder(),
-                      labelText: 'Enter name',
-                      prefixIcon: Align(
-                        widthFactor: 1.0,
-                        heightFactor: 1.0,
-                        child: Icon(
-                          Icons.person,
-                        ),
-                      ),
-                    )),
+                          border: OutlineInputBorder(),
+                          labelText: 'Enter Usre Id',
+                          prefixIcon: Align(
+                            widthFactor: 1.0,
+                            heightFactor: 1.0,
+                            child: Icon(
+                              Icons.person,
+                            ),
+                          ),
+                        )),
                   )),
               TextButton(
                 style: ButtonStyle(
@@ -58,7 +59,7 @@ class LoginWidget extends StatelessWidget {
                     context,
                     MaterialPageRoute(
                         builder: (context) =>
-                            StatefulSurveyWidget(userId: "user123")),
+                            StatefulSurveyWidget(userId: userId)),
                   );
                 },
                 child: Text('Start Survey'),
