@@ -39,11 +39,15 @@ class _StatefulSurveyState extends State<StatefulSurveyWidget> {
 
   @override
   Widget build(BuildContext context) {
+    int _initailTab = 1;
+    if (widget.pageIndex == 0) {
+      _initailTab = 0;
+    }
     return MaterialApp(
       // add tabBarTheme
       home: DefaultTabController(
         length: 2,
-        initialIndex: 1,
+        initialIndex: _initailTab,
         child: Scaffold(
           appBar: AppBar(
             flexibleSpace: HeaderWidget(),

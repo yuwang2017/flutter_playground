@@ -59,15 +59,17 @@ class _StatefulQuestionState extends State<WrapQuestionWidget> {
           Container(
               width: 10, child: Text(overflow: TextOverflow.ellipsis, "")),
           Container(
-              width: 300,
+              width: 900,
               height: 150,
               decoration: BoxDecoration(
                 border: Border.all(),
                 color: Colors.blueAccent,
               ),
-              child: GridWidget(
-                  question: widget.question,
-                  methodFromParent: updateSurveyAnswers))
+              child:
+                  //GridWidget(
+                  AnswerWidget(
+                      question: widget.question,
+                      methodFromParent: updateSurveyAnswers))
         ]),
       ),
     );

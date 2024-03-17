@@ -69,13 +69,12 @@ class LoginWidget extends StatelessWidget {
                   height: 100,
                   // decoration: BoxDecoration(border: Border.all()),
                   child: Padding(
-                    padding:
-                        EdgeInsets.symmetric(horizontal: 100, vertical: 16),
+                    padding: EdgeInsets.symmetric(horizontal: 50, vertical: 15),
                     child: TextField(
                         onChanged: (value) => userId = value,
                         decoration: InputDecoration(
                           border: OutlineInputBorder(),
-                          labelText: 'Enter Usre Id',
+                          labelText: 'Enter Prolific ID',
                           prefixIcon: Align(
                             widthFactor: 1.0,
                             heightFactor: 1.0,
@@ -91,7 +90,24 @@ class LoginWidget extends StatelessWidget {
                       MaterialStateProperty.all<Color>(Colors.blue),
                 ),
                 onPressed: () {
-                  fetchSurvey(context);
+                  if (userId.length == 0) {
+                    showDialog<String>(
+                      context: context,
+                      builder: (BuildContext context) => AlertDialog(
+                        title: const Text('Error'),
+                        content: const Text(
+                            'Please enter your prolific ID to start the Survey'),
+                        actions: <Widget>[
+                          TextButton(
+                            onPressed: () => Navigator.pop(context, 'OK'),
+                            child: const Text('OK'),
+                          ),
+                        ],
+                      ),
+                    );
+                  } else {
+                    fetchSurvey(context);
+                  }
                 },
                 child: Text('Start Survey'),
               )

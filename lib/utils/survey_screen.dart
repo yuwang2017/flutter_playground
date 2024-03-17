@@ -76,7 +76,7 @@ class _StatefulSurveyState extends State<SurveyScreen> {
 
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Colors.blueAccent,
+        backgroundColor: Colors.blueGrey,
         title: Text(
             style: TextStyle(
                 fontStyle: FontStyle.italic,
