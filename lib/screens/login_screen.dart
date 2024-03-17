@@ -1,9 +1,44 @@
 import 'package:flutter/material.dart';
 import '../utils/header_widget.dart';
 import '../utils/stateful_survey_screen.dart';
+import 'package:http/http.dart' as http;
+import '../apimodel/question.dart';
+import '../apimodel/survey.dart';
+import 'dart:convert';
 
 class LoginWidget extends StatelessWidget {
   String userId = "";
+  Survey survey = new Survey(
+      userId: "",
+      surveyLot: "",
+      startDate: DateTime.now(),
+      submitDate: DateTime.now(),
+      lastAccessDate: DateTime.now(),
+      status: "",
+      questions: []);
+
+  Future<void> fetchSurvey(BuildContext context) async {
+    // you can replace your api link with this link
+    final response = await http.get(Uri.parse(
+        'https://surveycataudioprocessor.ue.r.appspot.com/getSurvey/' +
+            userId));
+    if (response.statusCode == 200) {
+      dynamic jsonData = json.decode(response.body);
+      survey = Survey.fromJson(jsonData);
+
+      Navigator.push(
+        context,
+        MaterialPageRoute(
+            builder: (context) => StatefulSurveyWidget(
+                  survey: survey,
+                  pageIndex: 0,
+                )),
+      );
+    } else {
+      // Handle error if needed
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Column(children: [
@@ -20,7 +55,7 @@ class LoginWidget extends StatelessWidget {
               Container(
                   width: 600,
                   height: 200,
-                  decoration: BoxDecoration(border: Border.all()),
+                  //                               decoration: BoxDecoration(border: Border.all()),
                   child: const Padding(
                     padding: EdgeInsets.symmetric(horizontal: 8, vertical: 16),
                     child: Text(
@@ -32,9 +67,10 @@ class LoginWidget extends StatelessWidget {
               Container(
                   width: 600,
                   height: 100,
-                  decoration: BoxDecoration(border: Border.all()),
+                  // decoration: BoxDecoration(border: Border.all()),
                   child: Padding(
-                    padding: EdgeInsets.symmetric(horizontal: 8, vertical: 16),
+                    padding:
+                        EdgeInsets.symmetric(horizontal: 100, vertical: 16),
                     child: TextField(
                         onChanged: (value) => userId = value,
                         decoration: InputDecoration(
@@ -55,12 +91,7 @@ class LoginWidget extends StatelessWidget {
                       MaterialStateProperty.all<Color>(Colors.blue),
                 ),
                 onPressed: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                        builder: (context) =>
-                            StatefulSurveyWidget(userId: userId)),
-                  );
+                  fetchSurvey(context);
                 },
                 child: Text('Start Survey'),
               )

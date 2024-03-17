@@ -3,8 +3,9 @@ import 'package:flutter/material.dart';
 import 'package:namer_app/utils/grid_widget.dart';
 import '../apimodel/question.dart';
 import 'player_widget.dart';
+import 'answer_widget.dart';
 
-class WrapQuestionWidget extends StatelessWidget {
+class WrapQuestionWidget extends StatefulWidget {
   final SurveyQuestion question;
   //final AudioPlayer audioPlayer;
   final Function(String val1, String val2)? methodFromParent;
@@ -14,16 +15,27 @@ class WrapQuestionWidget extends StatelessWidget {
     required this.methodFromParent,
   });
 
+  @override
+  _StatefulQuestionState createState() => _StatefulQuestionState();
+}
+
+class _StatefulQuestionState extends State<WrapQuestionWidget> {
+  @override
+  void initState() {
+    super.initState();
+    setState(() {});
+  }
+
   void updateSurveyAnswers(String audioFileName, String answer) {
-    this.methodFromParent?.call(audioFileName, answer);
+    widget.methodFromParent?.call(audioFileName, answer);
   }
 
   @override
   Widget build(BuildContext context) {
-    AudioPlayer audioPlayer = new AudioPlayer();
-    audioPlayer..setReleaseMode(ReleaseMode.stop);
+    AudioPlayer audioPlayer = AudioPlayer();
+    audioPlayer.setReleaseMode(ReleaseMode.stop);
     String url = "https://surveycataudioprocessor.ue.r.appspot.com/getAudio/" +
-        question.audioFileName;
+        widget.question.audioFileName;
     audioPlayer.setSourceUrl(url);
     audioPlayer.stop();
     return Card(
@@ -37,9 +49,9 @@ class WrapQuestionWidget extends StatelessWidget {
                   style: TextStyle(
                       fontStyle: FontStyle.italic,
                       fontWeight: FontWeight.bold,
-                      fontSize: 16.0),
+                      fontSize: 18.0),
                   overflow: TextOverflow.ellipsis,
-                  (question.index).toString())),
+                  (widget.question.index).toString())),
           Container(
               width: 320,
               height: 150,
@@ -54,7 +66,8 @@ class WrapQuestionWidget extends StatelessWidget {
                 color: Colors.blueAccent,
               ),
               child: GridWidget(
-                  question: question, methodFromParent: updateSurveyAnswers))
+                  question: widget.question,
+                  methodFromParent: updateSurveyAnswers))
         ]),
       ),
     );

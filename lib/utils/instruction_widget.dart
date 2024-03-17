@@ -7,8 +7,8 @@ class InstructionWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    AudioPlayer player = new AudioPlayer();
-    player..setReleaseMode(ReleaseMode.stop);
+    AudioPlayer player = AudioPlayer();
+    player.setReleaseMode(ReleaseMode.stop);
     String url =
         "https://surveycataudioprocessor.ue.r.appspot.com/getInstructionAudio/Instruction_audio.mp3";
     player.setSourceUrl(url);
