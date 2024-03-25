@@ -56,7 +56,35 @@ class _StatefulSurveyState extends State<SurveyScreen> {
     print(body);
     var response = await http.post(Uri.parse(url),
         headers: {"Content-Type": "application/json"}, body: body);
-    print("${response.statusCode}");
+    if (response.statusCode == 200) {
+      showDialog<String>(
+        context: context,
+        builder: (BuildContext context) => AlertDialog(
+          title: const Text('Success'),
+          content: const Text('The Survey is saved'),
+          actions: <Widget>[
+            TextButton(
+              onPressed: () => Navigator.pop(context, 'OK'),
+              child: const Text('OK'),
+            ),
+          ],
+        ),
+      );
+    } else {
+      showDialog<String>(
+        context: context,
+        builder: (BuildContext context) => AlertDialog(
+          title: const Text('Error'),
+          content: const Text('Failed to save survey. Please try later'),
+          actions: <Widget>[
+            TextButton(
+              onPressed: () => Navigator.pop(context, 'OK'),
+              child: const Text('OK'),
+            ),
+          ],
+        ),
+      );
+    }
     return response;
   }
 
@@ -66,7 +94,35 @@ class _StatefulSurveyState extends State<SurveyScreen> {
     var body = json.encode(jsonEncode(widget.survey));
     var response = await http.post(Uri.parse(url),
         headers: {"Content-Type": "application/json"}, body: body);
-    print("${response.statusCode}");
+    if (response.statusCode == 200) {
+      showDialog<String>(
+        context: context,
+        builder: (BuildContext context) => AlertDialog(
+          title: const Text('Success'),
+          content: const Text('The Survey is submitted'),
+          actions: <Widget>[
+            TextButton(
+              onPressed: () => Navigator.pop(context, 'OK'),
+              child: const Text('OK'),
+            ),
+          ],
+        ),
+      );
+    } else {
+      showDialog<String>(
+        context: context,
+        builder: (BuildContext context) => AlertDialog(
+          title: const Text('Error'),
+          content: const Text('Failed to submit survey. Please try later'),
+          actions: <Widget>[
+            TextButton(
+              onPressed: () => Navigator.pop(context, 'OK'),
+              child: const Text('OK'),
+            ),
+          ],
+        ),
+      );
+    }
     return response;
   }
 

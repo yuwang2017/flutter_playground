@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 import '../utils/header_widget.dart';
 import '../utils/stateful_survey_screen.dart';
 import 'package:http/http.dart' as http;
-import '../apimodel/question.dart';
 import '../apimodel/survey.dart';
 import 'dart:convert';
+import 'package:loading_animation_widget/loading_animation_widget.dart';
 
 class LoginWidget extends StatelessWidget {
   String userId = "";
@@ -83,6 +83,23 @@ class LoginWidget extends StatelessWidget {
                             ),
                           ),
                         )),
+                  )),
+              Opacity(
+                  opacity: 0.0,
+                  child: new Padding(
+                    padding: const EdgeInsets.only(
+                      left: 16.0,
+                    ),
+                    child: ListTile(
+                      leading: LoadingAnimationWidget.staggeredDotsWave(
+                        color: Color.fromARGB(255, 26, 153, 68),
+                        size: 50,
+                      ),
+                      title: Text(
+                        'staggered dots wave',
+                        textScaleFactor: 1.5,
+                      ),
+                    ),
                   )),
               TextButton(
                 style: ButtonStyle(

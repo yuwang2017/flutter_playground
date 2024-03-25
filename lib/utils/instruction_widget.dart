@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:namer_app/apimodel/question.dart';
 import 'player_widget.dart';
 import 'answer_widget.dart';
-import '../apimodel/question.dart';
 
 class InstructionWidget extends StatelessWidget {
   const InstructionWidget();
@@ -42,7 +41,7 @@ class InstructionWidget extends StatelessWidget {
           builder: (BuildContext context) => AlertDialog(
             title: const Text('Error'),
             content: const Text(
-                'The accents in this sample audio are native accents, are consider as no nonnative accents'),
+                'The accents in this sample audio are from English spoken countries. They are considered as no nonnative accents'),
             actions: <Widget>[
               TextButton(
                 onPressed: () => Navigator.pop(context, 'OK'),
@@ -55,7 +54,7 @@ class InstructionWidget extends StatelessWidget {
         showDialog<String>(
           context: context,
           builder: (BuildContext context) => AlertDialog(
-            title: const Text('Coorect!'),
+            title: const Text('Correct!'),
             content: const Text(
                 'The accents in this sample audio are native accents.'),
             actions: <Widget>[

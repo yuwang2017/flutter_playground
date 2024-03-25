@@ -1,7 +1,4 @@
-import 'dart:convert';
-import 'package:audioplayers/audioplayers.dart';
 import 'package:flutter/material.dart';
-import 'package:http/http.dart' as http;
 import '../apimodel/question.dart';
 import '../apimodel/survey.dart';
 import 'header_widget.dart';
@@ -56,7 +53,7 @@ class _StatefulSurveyState extends State<StatefulSurveyWidget> {
               indicatorColor: Colors.lime,
               indicatorSize: TabBarIndicatorSize.label,
               indicator: BoxDecoration(
-                  borderRadius: BorderRadius.circular(5), color: Colors.blue),
+                  borderRadius: BorderRadius.circular(5), color: Colors.amber),
               tabs: [
                 Tab(
                   child: Container(

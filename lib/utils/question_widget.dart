@@ -1,6 +1,5 @@
 import 'package:audioplayers/audioplayers.dart';
 import 'package:flutter/material.dart';
-import 'package:namer_app/utils/grid_widget.dart';
 import '../apimodel/question.dart';
 import 'player_widget.dart';
 import 'answer_widget.dart';
